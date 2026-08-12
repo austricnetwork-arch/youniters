@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youniters Dashboard | Austric Network</title>
+    <style>
+        :root {
+            --bg-color: #1a0b2e;
+            --card-bg: #100525;
+            --text-color: #ffffff;
+            --primary: #5a189e;
+            --accent: #00f0ff;
+            --highlight: #ff0055;
+            --border-color: #3a1c5c;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, #100525 0%, #5a189e 100%); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--highlight); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.6em; font-weight: bold; background: linear-gradient(135deg, var(--accent) 0%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav a { margin: 0 12px; font-size: 0.9em; }
+        .auth-btn { background: var(--highlight); padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; }
+        
+        /* Layout */
+        .container { display: grid; grid-template-columns: 240px 1fr 280px; gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        
+        /* Sidebars */
+        .sidebar { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); height: fit-content; }
+        .sidebar h3 { color: var(--accent); margin-top: 0; font-size: 1.1em; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .sidebar-item { display: flex; align-items: center; padding: 10px 0; color: #ccc; font-size: 0.95em; transition: color 0.3s; }
+        .sidebar-item:hover { color: var(--highlight); }
+        .sidebar-icon { margin-right: 10px; font-size: 1.1em; }
+        
+        /* Main Feed */
+        .feed { display: flex; flex-direction: column; gap: 20px; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        
+        /* Composer */
+        .composer-top { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .avatar-sm { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; }
+        .composer-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 20px; padding: 10px 15px; color: #ccc; }
+        .composer-actions { display: flex; justify-content: space-around; margin-top: 10px; }
+        .composer-btn { background: transparent; border: none; color: #ccc; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
+        .composer-btn:hover { color: var(--accent); }
+        
+        /* Shorts & Posts */
+        .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .post-author { font-weight: bold; color: var(--accent); }
+        .post-time { font-size: 0.8em; color: #888; }
+        .post-content { color: #ddd; line-height: 1.5; margin-bottom: 15px; }
+        .post-media { width: 100%; border-radius: 8px; margin-bottom: 15px; background: #000; height: 200px; display: flex; align-items: center; justify-content: center; color: #555; }
+        .post-actions { display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 15px; }
+        .action-btn { background: transparent; border: none; color: #ccc; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
+        .action-btn:hover { color: var(--highlight); }
+        
+        /* Right Sidebar Online Users */
+        .online-user { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
+        .online-avatar { width: 32px; height: 32px; border-radius: 50%; background: #444; border: 2px solid #2ecc71; }
+        .online-name { font-size: 0.9em; color: #ccc; }
+        .msg-btn { margin-left: auto; background: var(--primary); border: none; color: #fff; padding: 4px 10px; border-radius: 10px; font-size: 0.8em; cursor: pointer; }
+        
+        /* Ad Placeholders */
+        .ad-banner { width: 100%; height: 90px; background: rgba(255,255,255,0.05); border: 1px dashed var(--border-color); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9em; margin-bottom: 15px; }
+        .ad-box { width: 100%; height: 250px; background: rgba(255,255,255,0.05); border: 1px dashed var(--border-color); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9em; margin-top: 15px; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 20px; color: #666; font-size: 0.85em; border-top: 1px solid var(--border-color); margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Youniters</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Communities</a>
+        <a href="#">Courses</a>
+        <a href="#">Marketplace</a>
+        <a href="#">Events</a>
+    </nav>
+    <a href="#" class="auth-btn">John Doe</a>
+</header>
+
+<div class="container">
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+        <div class="composer-top" style="margin-bottom: 20px;">
+            <div class="avatar-sm">JD</div>
+            <div>
+                <div style="font-weight: bold; font-size: 0.9em;">John Doe</div>
+                <div style="font-size: 0.8em; color: #888;">@johndoe</div>
+            </div>
+        </div>
+        <h3>Menu</h3>
+        <div class="sidebar-item"><span class="sidebar-icon">🏠</span> Home</div>
+        <div class="sidebar-item"><span class="sidebar-icon">📰</span> My Feed</div>
+        <div class="sidebar-item"><span class="sidebar-icon">👥</span> Communities</div>
+        <div class="sidebar-item"><span class="sidebar-icon">🛍</span> Marketplace</div>
+        <div class="sidebar-item"><span class="sidebar-icon">📅</span> Events</div>
+        <div class="sidebar-item"><span class="sidebar-icon">🎓</span> My Courses</div>
+        <div class="sidebar-item"><span class="sidebar-icon">⚙️</span> Settings</div>
+    </aside>
+
+    <!-- Main Feed -->
+    <main class="feed">
+        <!-- Post Composer -->
+        <div class="card">
+            <div class="composer-top">
+                <div class="avatar-sm">JD</div>
+                <div class="composer-input">Share what's on your mind, John...</div>
+            </div>
+            <div class="composer-actions">
+                <button class="composer-btn">🎥 Share Video</button>
+                <button class="composer-btn">🖼️ Photo</button>
+                <button class="composer-btn">📝 Article</button>
+                <button class="composer-btn" style="color: var(--highlight);">Post</button>
+            </div>
+        </div>
+
+        <!-- Ad Banner -->
+        <div class="ad-banner">Sponsored Content (728x90)</div>
+
+        <!-- Share Your Shorts Section -->
+        <div class="card">
+            <h3 style="margin: 0 0 15px 0; color: var(--accent);">Share Your Shorts</h3>
+            <div style="display: flex; gap: 10px; overflow-x: hidden;">
+                <div style="min-width: 100px; height: 150px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">Short 1</div>
+                <div style="min-width: 100px; height: 150px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">Short 2</div>
+                <div style="min-width: 100px; height: 150px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">Short 3</div>
+            </div>
+        </div>
+
+        <!-- Activity Feed Post -->
+        <div class="card">
+            <div class="post-header">
+                <div class="avatar-sm" style="background: #ff0055;">M</div>
+                <div>
+                    <div class="post-author">Medeline</div>
+                    <div class="post-time">2 hours ago</div>
+                </div>
+            </div>
+            <div class="post-content">Just finished recording my beach vlog! 🏖️ The sunset was absolutely incredible. Can't wait to edit this in Austric Studio and share the final cut!</div>
+            <div class="post-media">[ Beach Video Thumbnail ]</div>
+            <div class="post-actions">
+                <button class="action-btn">👍 Like (124)</button>
+                <button class="action-btn">💬 Comment (18)</button>
+                <button class="action-btn">🔗 Share (5)</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="sidebar">
+        <h3>Youniters Online</h3>
+        <div class="online-user">
+            <div class="online-avatar"></div>
+            <span class="online-name">Sarah Tech</span>
+            <button class="msg-btn">Msg</button>
+        </div>
+        <div class="online-user">
+            <div class="online-avatar"></div>
+            <span class="online-name">CreatorPro</span>
+            <button class="msg-btn">Msg</button>
+        </div>
+        <div class="online-user">
+            <div class="online-avatar"></div>
+            <span class="online-name">EcoWarrior</span>
+            <button class="msg-btn">Msg</button>
+        </div>
+        <div class="online-user">
+            <div class="online-avatar"></div>
+            <span class="online-name">DevSmith</span>
+            <button class="msg-btn">Msg</button>
+        </div>
+        
+        <!-- Ad Box -->
+        <div class="ad-box">Sponsored (300x250)</div>
+    </aside>
+
+</div>
+
+<footer>
+    © 2024 Youniters™ by Austric Network. All rights reserved.<br>
+    We respect privacy, promote harmony, and build a responsible digital society.
+</footer>
+
+</body>
+</html>
