@@ -3,79 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youniters Dashboard | Austric Network</title>
+    <title>YOUNITERS | Austric Network</title>
     <style>
         :root {
-            --bg-color: #1a0b2e;
-            --card-bg: #100525;
-            --text-color: #ffffff;
-            --primary: #5a189e;
-            --accent: #00f0ff;
-            --highlight: #ff0055;
-            --border-color: #3a1c5c;
+            --bg-color: #ffffff; /* White Background */
+            --card-bg: #ffffff; 
+            --chat-bg: #f3f4f6; /* Light Grey for Chat/Feed Boxes */
+            --text-color: #333333; /* Dark text for white background */
+            --primary: #5a189e; /* Deep Purple */
+            --accent: #5a189e; /* Deep Purple for Features */
+            --highlight: #ff0055; /* Red for interactions */
+            --border-color: #e0e0e0; /* Light borders */
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); }
         a { text-decoration: none; color: inherit; }
         
-        /* Header */
-        header { background: linear-gradient(135deg, #100525 0%, #5a189e 100%); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--highlight); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.6em; font-weight: bold; background: linear-gradient(135deg, var(--accent) 0%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        nav a { margin: 0 12px; font-size: 0.9em; }
-        .auth-btn { background: var(--highlight); padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; }
+        /* Header (Deep Purple Gradient) */
+        header { background: linear-gradient(135deg, #100525 0%, #5a189e 100%); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--highlight); position: sticky; top: 0; z-index: 100; color: #fff; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .y-logo { width: 35px; height: 35px; background: #fff; color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2em; }
+        .logo-text { font-size: 1.6em; font-weight: bold; color: #fff; letter-spacing: 1px; }
+        nav a { margin: 0 12px; font-size: 0.9em; color: #eee; }
+        nav a:hover { color: #fff; text-decoration: underline; }
+        .auth-btn { background: var(--highlight); padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9em; color: #fff; }
         
         /* Layout */
         .container { display: grid; grid-template-columns: 240px 1fr 280px; gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
         
-        /* Sidebars */
+        /* Sidebars (White with Light Borders) */
         .sidebar { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); height: fit-content; }
-        .sidebar h3 { color: var(--accent); margin-top: 0; font-size: 1.1em; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
-        .sidebar-item { display: flex; align-items: center; padding: 10px 0; color: #ccc; font-size: 0.95em; transition: color 0.3s; }
+        .sidebar h3 { color: var(--primary); margin-top: 0; font-size: 1.1em; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .sidebar-item { display: flex; align-items: center; padding: 10px 0; color: #555; font-size: 0.95em; transition: color 0.3s; }
         .sidebar-item:hover { color: var(--highlight); }
         .sidebar-icon { margin-right: 10px; font-size: 1.1em; }
         
-        /* Main Feed */
+        /* Main Feed & Chat Boxes (Light Grey) */
         .feed { display: flex; flex-direction: column; gap: 20px; }
-        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .card { background: var(--chat-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
         
         /* Composer */
         .composer-top { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
         .avatar-sm { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; }
-        .composer-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 20px; padding: 10px 15px; color: #ccc; }
+        .composer-input { flex: 1; background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; padding: 10px 15px; color: #888; }
         .composer-actions { display: flex; justify-content: space-around; margin-top: 10px; }
-        .composer-btn { background: transparent; border: none; color: #ccc; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
-        .composer-btn:hover { color: var(--accent); }
+        .composer-btn { background: transparent; border: none; color: #555; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
+        .composer-btn:hover { color: var(--primary); }
         
-        /* Shorts & Posts */
+        /* Posts */
         .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .post-author { font-weight: bold; color: var(--accent); }
+        .post-author { font-weight: bold; color: var(--primary); }
         .post-time { font-size: 0.8em; color: #888; }
-        .post-content { color: #ddd; line-height: 1.5; margin-bottom: 15px; }
-        .post-media { width: 100%; border-radius: 8px; margin-bottom: 15px; background: #000; height: 200px; display: flex; align-items: center; justify-content: center; color: #555; }
+        .post-content { color: #444; line-height: 1.5; margin-bottom: 15px; }
+        .post-media { width: 100%; border-radius: 8px; margin-bottom: 15px; background: #ddd; height: 200px; display: flex; align-items: center; justify-content: center; color: #666; }
         .post-actions { display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 15px; }
-        .action-btn { background: transparent; border: none; color: #ccc; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
+        .action-btn { background: transparent; border: none; color: #555; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
         .action-btn:hover { color: var(--highlight); }
         
         /* Right Sidebar Online Users */
         .online-user { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
-        .online-avatar { width: 32px; height: 32px; border-radius: 50%; background: #444; border: 2px solid #2ecc71; }
-        .online-name { font-size: 0.9em; color: #ccc; }
+        .online-avatar { width: 32px; height: 32px; border-radius: 50%; background: #ddd; border: 2px solid #2ecc71; }
+        .online-name { font-size: 0.9em; color: #333; }
         .msg-btn { margin-left: auto; background: var(--primary); border: none; color: #fff; padding: 4px 10px; border-radius: 10px; font-size: 0.8em; cursor: pointer; }
         
         /* Ad Placeholders */
-        .ad-banner { width: 100%; height: 90px; background: rgba(255,255,255,0.05); border: 1px dashed var(--border-color); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9em; margin-bottom: 15px; }
-        .ad-box { width: 100%; height: 250px; background: rgba(255,255,255,0.05); border: 1px dashed var(--border-color); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 0.9em; margin-top: 15px; }
+        .ad-banner { width: 100%; height: 90px; background: #eeeeee; border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.9em; margin-bottom: 15px; }
+        .ad-box { width: 100%; height: 250px; background: #eeeeee; border: 1px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.9em; margin-top: 15px; }
+        
+        /* Ideology Section (Deep Purple Container) */
+        .ideology { grid-column: 1 / -1; background: var(--primary); color: #fff; padding: 30px; border-radius: 12px; text-align: center; margin-top: 20px; border: 2px solid var(--highlight); }
+        .ideology h2 { color: #fff; margin-top: 0; }
+        .ideology p { max-width: 800px; margin: 0 auto 15px auto; line-height: 1.6; font-size: 0.95em; }
+        .ideology strong { color: var(--highlight); }
+
+        /* Features Container (Deep Purple) */
+        .features { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .cat-card { background: var(--primary); padding: 20px; border-radius: 12px; text-align: center; color: #fff; transition: transform 0.3s; }
+        .cat-card:hover { transform: translateY(-5px); border: 1px solid var(--highlight); }
+        .cat-card h4 { color: #fff; margin: 0 0 10px 0; font-size: 1.1em; }
+        .cat-card p { font-size: 0.85em; color: #e0e0e0; margin: 0; }
         
         /* Footer */
-        footer { text-align: center; padding: 20px; color: #666; font-size: 0.85em; border-top: 1px solid var(--border-color); margin-top: 40px; }
+        footer { text-align: center; padding: 20px; color: #888; font-size: 0.85em; border-top: 1px solid var(--border-color); margin-top: 40px; }
+        .privacy-footnote { margin-top: 10px; font-weight: bold; color: var(--primary); font-size: 0.9em; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">Youniters</div>
+    <div class="logo-area">
+        <div class="y-logo">Y</div>
+        <div class="logo-text">YOUNITERS</div>
+    </div>
     <nav>
         <a href="#">Home</a>
-        <a href="#">Communities</a>
+        <a href="#">Community</a>
         <a href="#">Courses</a>
         <a href="#">Marketplace</a>
         <a href="#">Events</a>
@@ -90,13 +111,13 @@
         <div class="composer-top" style="margin-bottom: 20px;">
             <div class="avatar-sm">JD</div>
             <div>
-                <div style="font-weight: bold; font-size: 0.9em;">John Doe</div>
+                <div style="font-weight: bold; font-size: 0.9em; color: #333;">John Doe</div>
                 <div style="font-size: 0.8em; color: #888;">@johndoe</div>
             </div>
         </div>
         <h3>Menu</h3>
         <div class="sidebar-item"><span class="sidebar-icon">🏠</span> Home</div>
-        <div class="sidebar-item"><span class="sidebar-icon">📰</span> My Feed</div>
+        <div class="sidebar-item"><span class="sidebar-icon">👤</span> My Profile</div>
         <div class="sidebar-item"><span class="sidebar-icon">👥</span> Communities</div>
         <div class="sidebar-item"><span class="sidebar-icon">🛍</span> Marketplace</div>
         <div class="sidebar-item"><span class="sidebar-icon">📅</span> Events</div>
@@ -104,7 +125,7 @@
         <div class="sidebar-item"><span class="sidebar-icon">⚙️</span> Settings</div>
     </aside>
 
-    <!-- Main Feed -->
+    <!-- Main Feed (Chat Boxes) -->
     <main class="feed">
         <!-- Post Composer -->
         <div class="card">
@@ -116,7 +137,7 @@
                 <button class="composer-btn">🎥 Share Video</button>
                 <button class="composer-btn">🖼️ Photo</button>
                 <button class="composer-btn">📝 Article</button>
-                <button class="composer-btn" style="color: var(--highlight);">Post</button>
+                <button class="composer-btn" style="color: var(--highlight); font-weight: bold;">Post</button>
             </div>
         </div>
 
@@ -125,11 +146,11 @@
 
         <!-- Share Your Shorts Section -->
         <div class="card">
-            <h3 style="margin: 0 0 15px 0; color: var(--accent);">Share Your Shorts</h3>
+            <h3 style="margin: 0 0 15px 0; color: var(--primary);">Share Your Shorts</h3>
             <div style="display: flex; gap: 10px; overflow-x: hidden;">
-                <div style="min-width: 100px; height: 150px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">Short 1</div>
-                <div style="min-width: 100px; height: 150px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">Short 2</div>
-                <div style="min-width: 100px; height: 150px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">Short 3</div>
+                <div style="min-width: 100px; height: 150px; background: #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">Short 1</div>
+                <div style="min-width: 100px; height: 150px; background: #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">Short 2</div>
+                <div style="min-width: 100px; height: 150px; background: #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">Short 3</div>
             </div>
         </div>
 
@@ -154,7 +175,7 @@
 
     <!-- Right Sidebar -->
     <aside class="sidebar">
-        <h3>Youniters Online</h3>
+        <h3>YOUNITERS Active</h3>
         <div class="online-user">
             <div class="online-avatar"></div>
             <span class="online-name">Sarah Tech</span>
@@ -180,11 +201,38 @@
         <div class="ad-box">Sponsored (300x250)</div>
     </aside>
 
+    <!-- Ideology Section -->
+    <section class="ideology">
+        <h2>Our Ideology</h2>
+        <p>Youniters is a social society where every member contributes their desires to create a friendly fraternity, equality, and good bonding. We play a great role in creating a socially, globally good environment.</p>
+        <p>Youniters strongly prohibits hate speech, abuse, harassment (especially against minors, women, and seniors), and abusive prank videos.</p>
+        <p><strong>Youniters are not neutral.</strong> Youniters are in favour of respect and friendship, and a Green, peaceful World.</p>
+    </section>
+
+    <!-- Features Grid (Deep Purple Containers) -->
+    <div class="features">
+        <div class="cat-card">
+            <h4>Communities</h4>
+            <p>Build or join focused groups.</p>
+        </div>
+        <div class="cat-card">
+            <h4>Courses</h4>
+            <p>Learn from top creators.</p>
+        </div>
+        <div class="cat-card">
+            <h4>Aecho Calls</h4>
+            <p>Secure video & voice.</p>
+        </div>
+        <div class="cat-card">
+            <h4>Marketplace</h4>
+            <p>Sell digital products.</p>
+        </div>
+    </div>
 </div>
 
 <footer>
-    © 2024 Youniters™ by Austric Network. All rights reserved.<br>
-    We respect privacy, promote harmony, and build a responsible digital society.
+    © 2024 YOUNITERS™ by Austric Network. All rights reserved.<br>
+    <div class="privacy-footnote">We respect your privacy, and we are committed to keeping your documents secret.</div>
 </footer>
 
 </body>
